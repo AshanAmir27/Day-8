@@ -120,7 +120,19 @@ function removeDuplicates(arr) {
   return newArr;
 }
 
+//11
+function removewithoutpush(arr)
+{
+arr[arr.length] = 4;   // place at next empty index
+  return arr;
+}
 
+// 12
+
+function removeDuplicatesWP(arr){
+arr.length = arr.length - 1;  // reduce length by 1
+  return arr;
+}
 // Show result helper
 function showResult(input, result, explanation) {
   outputDiv.innerHTML = `<strong>Input:</strong> ${JSON.stringify(input)}<br><strong>Result:</strong> ${JSON.stringify(result)}`;
@@ -189,12 +201,19 @@ btn10.innerText = "Remove duplicates";
 btn10.onclick = () => showResult([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8], removeDuplicates([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8]), "Removed duplicates");
 buttonsContainer.appendChild(btn10);
 
-// 11. Add Element at the END
+// 12. Add Number to arrary without push
+const btn12 = document.createElement("button");
+btn12.innerText = "Add Number without Push";
+let arr = [1, 2, 3];
+btn12.onclick = () => showResult([arr], removewithoutpush([arr]), "Add Number to array without push");
+buttonsContainer.appendChild(btn12);
+
+// 11. Remove last element (without pop)
 const btn11 = document.createElement("button");
-btn11.innerText = "Add Element At End";
-btn11.onclick = () => showResult([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8], removeDuplicates([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8]), "Removed duplicates");
+btn11.innerText = "Remote Element At End without Pop";
+btn11.onclick = () => showResult([arr], removeDuplicatesWP([arr]), "Removed element at the end with out pop ");
 buttonsContainer.appendChild(btn11);
 
-// let fruits = ["Apple", "Banana"];
-// fruits.push("Mango");
-// console.log(fruits); // ["Apple", "Banana", "Mango"]
+
+
+
