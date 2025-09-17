@@ -188,3 +188,13 @@ const btn10 = document.createElement("button");
 btn10.innerText = "Remove duplicates";
 btn10.onclick = () => showResult([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8], removeDuplicates([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8]), "Removed duplicates");
 buttonsContainer.appendChild(btn10);
+
+// 11. Add Element at the END
+const btn11 = document.createElement("button");
+btn11.innerText = "Add Element At End";
+btn11.onclick = () => showResult([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8], removeDuplicates([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8]), "Removed duplicates");
+buttonsContainer.appendChild(btn11);
+
+// let fruits = ["Apple", "Banana"];
+// fruits.push("Mango");
+// console.log(fruits); // ["Apple", "Banana", "Mango"]
