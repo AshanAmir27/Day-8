@@ -1,58 +1,51 @@
-const numbers = [1, 2, 3, 4, 5,4,5,6,7,8,9,0,5];
-const words = ["Hi", "it's", "me","Umar"];
+const numbers = [1, 2, 3, 4, 5, 4, 5, 6, 7, 8, 9, 0, 5];
+const words = ["Hi", "it's", "me", "Umar"];
 
 const outputDiv = document.getElementById("output");
 const explanationDiv = document.getElementById("explanation");
 const buttonsContainer = document.getElementById("buttons-container");
 
-// Functions
+// Existing helper functions...
 
 function addNumber(arr, num) {
   let newArr = [];
   for (let i = 0; i < getLength(arr); i++) {
     newArr[i] = arr[i];
   }
-
-  //push
   newArr[getLength(arr)] = num;
   return newArr;
 }
 
-// 2. Remove last
 function removeLast(arr) {
   let newArr = [];
   let len = getLength(arr);
   for (let i = 0; i < len - 1; i++) {
-    newArr[i] = arr[i]; // use pop() to remove last
+    newArr[i] = arr[i];
   }
   return newArr;
 }
 
-// 3. Get first
 function getFirst(arr) {
   return arr[0];
 }
 
-// 4. Get index
 function getIndex(arr, value) {
   for (let i = 0; i < getLength(arr); i++) {
     if (arr[i] === value) {
       return i;
     }
   }
-  return -1; // if not found
+  return -1;
 }
 
-// 5. Get length (no .length)
 function getLength(arr) {
   let count = 0;
-  for (let i in arr) { // using for..each loop to count
+  for (let i in arr) {
     count++;
   }
   return count;
 }
 
-// 6. Reverse array
 function reverseArray(arr) {
   let len = getLength(arr);
   let newArr = [];
@@ -62,20 +55,17 @@ function reverseArray(arr) {
   return newArr;
 }
 
-// 7. Get even numbers
 function getEvens(arr) {
   let newArr = [];
   let j = 0;
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] % 2 === 0) {
-      newArr[j] = arr[i];
-      j++;
+      newArr[j++] = arr[i];
     }
   }
   return newArr;
 }
 
-// 8. Sum of array
 function sumArray(arr) {
   let sum = 0;
   for (let i = 0; i < getLength(arr); i++) {
@@ -84,39 +74,31 @@ function sumArray(arr) {
   return sum;
 }
 
-// 9. Join words into sentence
 function joinWords(arr) {
   let sentence = "";
   for (let i = 0; i < getLength(arr); i++) {
     sentence += arr[i];
     if (i < getLength(arr) - 1) {
-      sentence += " "; //join()
+      sentence += " ";
     }
   }
   return sentence;
 }
 
-// 10. Remove duplicates
 function removeDuplicates(arr) {
   let newArr = [];
-
   for (let i = 0; i < arr.length; i++) {
     let found = false;
-
-    // check if arr[i] already exists in newArr
     for (let j = 0; j < newArr.length; j++) {
       if (arr[i] === newArr[j]) {
         found = true;
         break;
       }
     }
-
-    // if not found, add it
     if (!found) {
       newArr[newArr.length] = arr[i];
     }
   }
-
   return newArr;
 }
 
@@ -184,99 +166,173 @@ function mergeArrays(arr1, arr2) {
 }
 
 
-// Show result helper
+// 11. Find Maximum Value
+function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i < getLength(arr); i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+// 12. Count Occurrences of a Value
+function countOccurrences(arr, value) {
+  let count = 0;
+  for (let i = 0; i < getLength(arr); i++) {
+    if (arr[i] === value) {
+      count++;
+    }
+  }
+  return count;
+}
+
+// 13. Check if Array is Sorted
+function isSorted(arr) {
+  for (let i = 1; i < getLength(arr); i++) {
+    if (arr[i] < arr[i - 1]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// 14. Merge Two Arrays
+function mergeArrays(arr1, arr2) {
+  let newArr = [];
+  for (let i = 0; i < getLength(arr1); i++) {
+    newArr[newArr.length] = arr1[i];
+  }
+  for (let j = 0; j < getLength(arr2); j++) {
+    newArr[newArr.length] = arr2[j];
+  }
+  return newArr;
+}
+
+// 15. Rotate Array Elements
+function rotateArray(arr, positions) {
+  let len = getLength(arr);
+  let newArr = [];
+  for (let i = 0; i < len; i++) {
+    newArr[(i + positions) % len] = arr[i];
+  }
+  return newArr;
+}
+
+// ===== Display helper =====
 function showResult(input, result, explanation) {
   outputDiv.innerHTML = `<strong>Input:</strong> ${JSON.stringify(input)}<br><strong>Result:</strong> ${JSON.stringify(result)}`;
   explanationDiv.innerHTML = `<strong>Explanation:</strong> ${explanation}`;
 }
 
-// --- Create Buttons ---
-
-// 1. Add number
+// ===== Buttons =====
+// Existing buttons...
 const btn1 = document.createElement("button");
 btn1.innerText = "Add number to array";
 btn1.onclick = () => showResult(numbers, addNumber(numbers, 6), "Added number to end of array");
 buttonsContainer.appendChild(btn1);
 
-// 2. Remove last
 const btn2 = document.createElement("button");
 btn2.innerText = "Remove last element";
 btn2.onclick = () => showResult(numbers, removeLast(numbers), "Removed last element");
 buttonsContainer.appendChild(btn2);
 
-// 3. Get first
 const btn3 = document.createElement("button");
 btn3.innerText = "Get first element";
 btn3.onclick = () => showResult(numbers, getFirst(numbers), "Got first element");
 buttonsContainer.appendChild(btn3);
 
-// 4. Get index
 const btn4 = document.createElement("button");
 btn4.innerText = "Get index of value 5";
 btn4.onclick = () => showResult(numbers, getIndex(numbers, 5), "Got index of 5");
 buttonsContainer.appendChild(btn4);
 
-// 5. Get length
 const btn5 = document.createElement("button");
 btn5.innerText = "Get array length (no .length)";
 btn5.onclick = () => showResult(numbers, getLength(numbers), "Counted elements without .length");
 buttonsContainer.appendChild(btn5);
 
-// 6. Reverse array
 const btn6 = document.createElement("button");
 btn6.innerText = "Reverse array";
 btn6.onclick = () => showResult(numbers, reverseArray(numbers), "Reversed the array");
 buttonsContainer.appendChild(btn6);
 
-// 7. Get evens
 const btn7 = document.createElement("button");
 btn7.innerText = "Get even numbers";
 btn7.onclick = () => showResult(numbers, getEvens(numbers), "Filtered even numbers");
 buttonsContainer.appendChild(btn7);
 
-// 8. Sum of array
 const btn8 = document.createElement("button");
 btn8.innerText = "Sum of array";
 btn8.onclick = () => showResult(numbers, sumArray(numbers), "Summed all numbers");
 buttonsContainer.appendChild(btn8);
 
-// 9. Join words
 const btn9 = document.createElement("button");
 btn9.innerText = "Join words";
 btn9.onclick = () => showResult(words, joinWords(words), "Joined words into a sentence");
 buttonsContainer.appendChild(btn9);
 
-// 10. Remove duplicates
 const btn10 = document.createElement("button");
 btn10.innerText = "Remove duplicates";
-btn10.onclick = () => showResult([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8], removeDuplicates([1, 2, 2, 3, 3, 4,4,4,4,3,5,6,7,8]), "Removed duplicates");
+btn10.onclick = () =>
+  showResult(
+    [1, 2, 2, 3, 3, 4, 4, 4, 4, 3, 5, 6, 7, 8],
+    removeDuplicates([1, 2, 2, 3, 3, 4, 4, 4, 4, 3, 5, 6, 7, 8]),
+    "Removed duplicates"
+  );
 buttonsContainer.appendChild(btn10);
-  // 11. Find maximum
+
+// ===== New Buttons for New Functions =====
 const btn11 = document.createElement("button");
-btn11.innerText = "Find maximum";
-btn11.onclick = () => showResult(numbers, findMax(numbers), "Found maximum value");
+btn11.innerText = "Find Maximum Value";
+btn11.onclick = () => showResult(numbers, findMax(numbers), "Found the maximum value in the array");
 buttonsContainer.appendChild(btn11);
 
-// 12. Find minimum
 const btn12 = document.createElement("button");
-btn12.innerText = "Find minimum";
-btn12.onclick = () => showResult(numbers, findMin(numbers), "Found minimum value");
+btn12.innerText = "Count Occurrences of 5";
+btn12.onclick = () => showResult(numbers, countOccurrences(numbers, 5), "Counted occurrences of 5 in the array");
 buttonsContainer.appendChild(btn12);
 
-// 13. Sort array
 const btn13 = document.createElement("button");
-btn13.innerText = "Sort array";
-btn13.onclick = () => showResult(numbers, sortArray(numbers), "Sorted array in ascending order");
+btn13.innerText = "Check if Sorted";
+btn13.onclick = () => showResult(numbers, isSorted(numbers), "Checked if the array is sorted in ascending order");
 buttonsContainer.appendChild(btn13);
 
-// 14. Check if includes value
 const btn14 = document.createElement("button");
-btn14.innerText = "Check if includes 7";
-btn14.onclick = () => showResult(numbers, includesValue(numbers, 7), "Checked if array includes 7");
+btn14.innerText = "Merge Arrays";
+btn14.onclick = () => showResult([1, 2, 3], mergeArrays([1, 2, 3], [4, 5, 6]), "Merged two arrays");
 buttonsContainer.appendChild(btn14);
 
-// 15. Merge arrays
 const btn15 = document.createElement("button");
-btn15.innerText = "Merge with [10,11,12]";
-btn15.onclick = () => showResult(numbers, mergeArrays(numbers, [10,11,12]), "Merged two arrays");
-buttonsContainer.appendChild(btn15);
+btn15.innerText = "Rotate Array by 3";
+btn15.onclick = () => showResult(numbers, rotateArray(numbers, 3), "Rotated array elements by 3 positions");
+  // 11. Find maximum
+const btn16 = document.createElement("button");
+btn16.innerText = "Find maximum";
+btn16.onclick = () => showResult(numbers, findMax(numbers), "Found maximum value");
+buttonsContainer.appendChild(btn16);
+
+// 12. Find minimum
+const btn17 = document.createElement("button");
+btn17.innerText = "Find minimum";
+btn17.onclick = () => showResult(numbers, findMin(numbers), "Found minimum value");
+buttonsContainer.appendChild(btn17);
+
+// 13. Sort array
+const btn18 = document.createElement("button");
+btn13.innerText = "Sort array";
+btn13.onclick = () => showResult(numbers, sortArray(numbers), "Sorted array in ascending order");
+buttonsContainer.appendChild(btn18);
+
+// 14. Check if includes value
+const btn19 = document.createElement("button");
+btn19.innerText = "Check if includes 7";
+btn19.onclick = () => showResult(numbers, includesValue(numbers, 7), "Checked if array includes 7");
+buttonsContainer.appendChild(btn19);
+
+// 15. Merge arrays
+const btn20 = document.createElement("button");
+btn20.innerText = "Merge with [10,11,12]";
+btn20.onclick = () => showResult(numbers, mergeArrays(numbers, [10,11,12]), "Merged two arrays");
+buttonsContainer.appendChild(btn20);
