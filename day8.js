@@ -102,7 +102,69 @@ function removeDuplicates(arr) {
   return newArr;
 }
 
-// ===== NEW FUNCTIONS =====
+// 11. Find maximum
+function findMax(arr) {
+  let max = arr[0];
+  for (let i = 1; i < getLength(arr); i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+// 12. Find minimum
+function findMin(arr) {
+  let min = arr[0];
+  for (let i = 1; i < getLength(arr); i++) {
+    if (arr[i] < min) {
+      min = arr[i];
+    }
+  }
+  return min;
+}
+
+// 13. Sort array (ascending) - bubble sort
+function sortArray(arr) {
+  let newArr = [...arr];
+  let len = getLength(newArr);
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - i - 1; j++) {
+      if (newArr[j] > newArr[j + 1]) {
+        let temp = newArr[j];
+        newArr[j] = newArr[j + 1];
+        newArr[j + 1] = temp;
+      }
+    }
+  }
+  return newArr;
+}
+
+// 14. Check if includes value
+function includesValue(arr, value) {
+  for (let i = 0; i < getLength(arr); i++) {
+    if (arr[i] === value) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// 15. Merge two arrays
+function mergeArrays(arr1, arr2) {
+  let newArr = [];
+  let i = 0;
+
+  for (let j = 0; j < getLength(arr1); j++) {
+    newArr[i++] = arr1[j];
+  }
+  for (let j = 0; j < getLength(arr2); j++) {
+    newArr[i++] = arr2[j];
+  }
+
+  return newArr;
+}
+
 
 // 11. Find Maximum Value
 function findMax(arr) {
@@ -245,4 +307,32 @@ buttonsContainer.appendChild(btn14);
 const btn15 = document.createElement("button");
 btn15.innerText = "Rotate Array by 3";
 btn15.onclick = () => showResult(numbers, rotateArray(numbers, 3), "Rotated array elements by 3 positions");
-buttonsContainer.appendChild(btn15);
+  // 11. Find maximum
+const btn16 = document.createElement("button");
+btn16.innerText = "Find maximum";
+btn16.onclick = () => showResult(numbers, findMax(numbers), "Found maximum value");
+buttonsContainer.appendChild(btn16);
+
+// 12. Find minimum
+const btn17 = document.createElement("button");
+btn17.innerText = "Find minimum";
+btn17.onclick = () => showResult(numbers, findMin(numbers), "Found minimum value");
+buttonsContainer.appendChild(btn17);
+
+// 13. Sort array
+const btn18 = document.createElement("button");
+btn13.innerText = "Sort array";
+btn13.onclick = () => showResult(numbers, sortArray(numbers), "Sorted array in ascending order");
+buttonsContainer.appendChild(btn18);
+
+// 14. Check if includes value
+const btn19 = document.createElement("button");
+btn19.innerText = "Check if includes 7";
+btn19.onclick = () => showResult(numbers, includesValue(numbers, 7), "Checked if array includes 7");
+buttonsContainer.appendChild(btn19);
+
+// 15. Merge arrays
+const btn20 = document.createElement("button");
+btn20.innerText = "Merge with [10,11,12]";
+btn20.onclick = () => showResult(numbers, mergeArrays(numbers, [10,11,12]), "Merged two arrays");
+buttonsContainer.appendChild(btn20);
